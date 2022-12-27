@@ -35,6 +35,7 @@ for (let turno = 1; turno <= 20; turno++) {
     while(ingresarNombre ==""){
         ingresarNombre = prompt("Ingrese un nombre valido")
     }
+    //OTRA MANERA DE EVITAR QUE AVANCE EL INDICE SI EL VALOR ES INVALIDO
     // if(ingresarNombre==""){
     //     turno=turno-1
     //     continue
