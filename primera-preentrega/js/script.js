@@ -1,5 +1,7 @@
 const SALIDA = "ESC"
 const IVA=1.21
+let total = 0
+
 //PIDO EL NOMBRE
 for (let turno = 1; turno <= 20; turno++) {
     // En cada repetición solicitamos un nombre.
@@ -12,10 +14,12 @@ for (let turno = 1; turno <= 20; turno++) {
     }
     alert(" Turno  N° "+turno+" Nombre: "+ingresarNombre);
 }
-let total = 0
 //PIDO PRODUCTOS
 for (let turno = 1; turno <= 20; turno++) {
     let ingresaProducto = prompt("Ingresar nombre del producto o ingrese ESC para salir");
+    while(esSoloTexto(ingresarNombre)){
+        ingresarNombre = prompt("Ingrese un nombre valido")
+    }
     if(ingresaProducto==SALIDA){
         break
     }
@@ -23,6 +27,7 @@ for (let turno = 1; turno <= 20; turno++) {
     total = total+sumarIVA(ingresarMonto)
 }
 alert(total)
+
 function sumarIVA(monto) {
     if (monto ==0) {
         return false
