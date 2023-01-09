@@ -25,6 +25,7 @@ do {
     nombre = prompt("Ingrese el nombre o ESC PARA SALIR")
 } while (nombre !="ESC");
 
+let cantidad_turnos = prompt("ingrese la cantidad de turnos a solicitar")
 //CASO CON UN FOR
 for (let turno = 1; turno <= 20; turno++) {
     // En cada repetición solicitamos un nombre.
@@ -43,3 +44,4 @@ for (let turno = 1; turno <= 20; turno++) {
     // Informamos el turno asignado usando el número de repetición (i).
     alert(" Turno  N° "+turno+" Nombre: "+ingresarNombre);
 }
+

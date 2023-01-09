@@ -108,6 +108,7 @@ class Television{
         this.plan = plan
     }
 }
+
 const tv = new Television("LG", 39, "Av. Siempreviva 742");
 const usuario = new Television("SAMSUNG", 39, "Av. Siempreviva 742");
 usuario.cambiarPlan(3)
