@@ -1,43 +1,36 @@
-const SALIDA = "ESC"
-const IVA=1.21
+let test = confirm("HOLA")
+console.log(test)
+let cantidad_facturas = Number(prompt("ingrese cantidad de Facturas")) //PIDO LA CANTIDAD PARA EL CICLO DE FOR
+
+// let cantidad_facturas = 2
 let total = 0
-
-//PIDO EL NOMBRE
-for (let turno = 1; turno <= 20; turno++) {
-    // En cada repetición solicitamos un nombre.
-    let ingresarNombre = prompt("Ingresar nombre o ingrese ESC para salir");
-    if(ingresarNombre==SALIDA){
+let promedio = 0
+let numero_factura = 0
+const SALIR = "ESC"
+for (let factura = 1; factura <= cantidad_facturas; factura++) {
+    let nombre = prompt("ingrese nombre de factura o ESC para salir")
+    if (escondicionSalida(nombre)) {
+        alert("GRACIAS POR SU SERVICIO")
         break
     }
-    while(esSoloTexto(ingresarNombre)){
-        ingresarNombre = prompt("Ingrese un nombre valido")
-    }
-    alert(" Turno  N° "+turno+" Nombre: "+ingresarNombre);
+    numero_factura = factura
+    // let nombre = "LOQUESEA"+factura
+    let monto = Number(prompt("ingrese monto de factura"))
+    total = total + monto //incremento el TOTAL
+    // let monto = 200+factura
+    console.log(`FACTURA ${factura} con nombre ${nombre} y monto ${monto}. El total de todo es ${total}`)
 }
-//PIDO PRODUCTOS
-for (let turno = 1; turno <= 20; turno++) {
-    let ingresaProducto = prompt("Ingresar nombre del producto o ingrese ESC para salir");
-    while(esSoloTexto(ingresarNombre)){
-        ingresarNombre = prompt("Ingrese un nombre valido")
-    }
-    if(ingresaProducto==SALIDA){
-        break
-    }
-    let ingresarMonto = Number(prompt("Ingresar monto o ingrese ESC para salir"));
-    total = total+sumarIVA(ingresarMonto)
-}
-alert(total)
 
-function sumarIVA(monto) {
-    if (monto ==0) {
-        return false
+promedio = calcularPromedio(total, numero_factura)
+
+function escondicionSalida(texto) {
+    if (texto == SALIR) {
+        return true
     }
-    monto = monto*IVA
-    return monto
+    return false
 }
-function esSoloTexto(texto) {
-    if (texto =="") {
-        return false
-    }
-    return true
+
+function calcularPromedio(monto, cantidad) {
+    console.log(`El promedio es ${monto/cantidad}`)
+    return monto / cantidad
 }
