@@ -47,7 +47,13 @@ for (const persona of personas) {
 
 let nombreBuscar =""
 nombreBuscar = prompt("DECIME EL NOMBRE")
+
 if(nombreBuscar){
+    buscar(nombreBuscar)
+}
+
+
+function buscar(nombreBuscar) {
     nombreBuscar = nombreBuscar.toUpperCase()
     let listaDeNombres = document.querySelectorAll('li')
     for(nombre of listaDeNombres){
