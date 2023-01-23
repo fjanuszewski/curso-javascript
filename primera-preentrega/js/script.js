@@ -1,4 +1,3 @@
-
 let cantidad_facturas = Number(prompt("ingrese cantidad de Facturas")) //PIDO LA CANTIDAD PARA EL CICLO DE FOR
 let total = 0
 let promedio = 0
@@ -9,14 +8,27 @@ const facturas = [];
 
 class Factura {
     constructor(nombre, monto) {
-        this.nombre  = nombre.toUpperCase();
-        this.monto  = parseFloat(monto);
+        this.nombre = nombre.toUpperCase();
+        this.monto = parseFloat(monto);
         this.montoConIva = 0
+        this.items = []
     }
     sumaIva() {
         this.montoConIva = this.monto * 1.21;
     }
+    agregaDetalle(detalle) {
+        if ((detalle.nombre != undefined) && (Number(detalle.monto) != NaN)) {
+            // this.items.push(detalle)
+            this.items.push({
+                nombre: detalle.nombre,
+                monto: detalle.monto
+            })
+        }
+        return
+        //items = []
+    }
 }
+
 
 for (let factura = 1; factura <= cantidad_facturas; factura++) {
     let nombre = prompt(`ingrese nombre de factura o ${SALIR} para salir`)
@@ -24,22 +36,23 @@ for (let factura = 1; factura <= cantidad_facturas; factura++) {
         alert("GRACIAS POR SU SERVICIO")
         break
     }
-    numero_factura = factura
-
     let monto = Number(prompt("ingrese monto de factura"))
-    
-    facturas.push(new Factura(nombre,monto));
-
-    total = total + monto //incremento el TOTAL
-
+    facturas.push(new Factura(nombre, monto));
+    total = calcularTotal(facturas)
     console.log(`FACTURA ${factura} con nombre ${nombre} y monto ${monto}. El total de todo es ${total}`)
 }
 
+function calcularTotal(items) {
+    let totalInterino = 0
+    for (const item of items) {
+        totalInterino = totalInterino + item.monto
+    }
+    return totalInterino
+}
 for (const factura of facturas)
     factura.sumaIva();
 
-
-promedio = calcularPromedio(total, numero_factura)
+promedio = calcularPromedio(facturas)
 
 function escondicionSalida(texto) {
     if (texto == SALIR) {
@@ -48,20 +61,23 @@ function escondicionSalida(texto) {
     return false
 }
 
-function calcularPromedio(monto, cantidad) {
-    console.log(`El promedio es ${monto/cantidad}`)
-    return monto / cantidad
+function calcularPromedio(items) {
+    let cantidad = items.length
+    let totalInterino = 0
+    for (const item of items) {
+        totalInterino = totalInterino + item.monto
+    }
+    console.log(`El promedio es ${totalInterino / cantidad}`)
+    return totalInterino / cantidad
 }
 //bonus track
-for(const factura of facturas){
+for (const factura of facturas) {
     console.log(factura.monto)
 }
 
 let buscar = prompt("¿QUERES BUSCAR UNA FACTURA?, SI QUIERE CANCELAR INGRESE ESC")
 
-if(buscar != SALIR){
+if (buscar != SALIR) {
     const resultado = facturas.find((factura) => factura.nombre === buscar.toUpperCase())
     alert(`FACTURA ${facturas.indexOf(resultado)+1} con nombre ${resultado.nombre} y monto ${resultado.monto}. El iva es ${resultado.montoConIva}. El total de todo es ${total}`)
 }
-
-
