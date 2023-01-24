@@ -18,17 +18,14 @@ class Factura {
     }
     agregaDetalle(detalle) {
         if ((detalle.nombre != undefined) && (Number(detalle.monto) != NaN)) {
-            // this.items.push(detalle)
             this.items.push({
                 nombre: detalle.nombre,
                 monto: detalle.monto
             })
         }
         return
-        //items = []
     }
 }
-
 
 for (let factura = 1; factura <= cantidad_facturas; factura++) {
     let nombre = prompt(`ingrese nombre de factura o ${SALIR} para salir`)
@@ -36,10 +33,21 @@ for (let factura = 1; factura <= cantidad_facturas; factura++) {
         alert("GRACIAS POR SU SERVICIO")
         break
     }
+    
+    // let detalles = agregarDetalles()
+
     let monto = Number(prompt("ingrese monto de factura"))
     facturas.push(new Factura(nombre, monto));
     total = calcularTotal(facturas)
     console.log(`FACTURA ${factura} con nombre ${nombre} y monto ${monto}. El total de todo es ${total}`)
+}
+
+function agregarDetalles() {
+    for (let index = 0; index < 100; index++) {
+        let nombre = prompt(`ingrese el nombre del item o ${SALIR} para salir`)
+        let monto = prompt(`ingrese el monto del item o ${SALIR} para salir`)
+        agregaDetalle({nombre,monto})
+    }
 }
 
 function calcularTotal(items) {
