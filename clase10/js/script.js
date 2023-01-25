@@ -1,84 +1,45 @@
-class Usuario {
-    constructor(nombre, modoOscuro) {
-        this.nombre = nombre
-        this.modoOscuro = modoOscuro
-    }
-    setNombre(nuevoNombre) {
-        if (nombre != '') {
-            this.nombre = nuevoNombre
-        }
-    }
-    setModoOscuro(nuevoModo) {
-        this.modoOscuro = nuevoModo
-    }
+// localStorage.setItem('bienvenida', '¡Hola Code!');
+// sessionStorage.setItem('esValido', true);
+
+// localStorage.removeItem('bienvenida');
+// sessionStorage.removeItem('esValido');
+// localStorage.clear()    //elimina toda la información
+// sessionStorage.clear() //elimina toda la información
+
+//PASAR A STRING UN OBJETO
+// const producto1 = { id: 2, producto: "Arroz" };
+// const enJSON    = JSON.stringify(producto1);
+
+// console.log(enJSON); // {"id":2,"producto":"Arroz"}
+// console.log(typeof producto1); // object
+// console.log(typeof enJSON);    // string
+
+// localStorage.setItem("producto1", enJSON);
+// // Se guarda {"id":2,"producto":"Arroz"}
+
+//PASAR A OBJETO UN STRING
+// const enJSON    = '{"id":2,"producto":"Arroz"}';
+// const producto1 = JSON.parse(enJSON);
+
+// console.log(typeof enJSON);     // string
+// console.log(typeof producto1);  // object
+// console.log(producto1.producto); // Arroz
+
+// const producto2 = JSON.parse(localStorage.getItem("producto1"));
+// console.log(producto2.id);  // 2 
+
+// let loquesea = '{"nombre": "ENSALADA", "precio": 200}'
+// let loqueseaEnobjeto = JSON.parse(loquesea)
+
+const productos = [{ id: 1,  producto: "Arroz", precio: 125 },
+                  {  id: 2,  producto: "Fideo", precio: 70 },
+                  {  id: 3,  producto: "Pan"  , precio: 50},
+                  {  id: 4,  producto: "Flan" , precio: 100}];
+
+const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) };
+//Almacenar producto por producto
+for (const producto of productos) {
+    guardarLocal(producto.id, JSON.stringify(producto));
 }
-
-let plantillaModoOscuro = `<div class="inputSwitch">
-                            <label class="etiquetaDeInput"><b>Modo Oscuro</b></label>
-                            <label class="switch">
-                                <input type="checkbox" id="modoOscuro">
-                                <span class="slider round"></span>
-                            </label>
-                            </div>`
-
-let plantillaDatosUsuario = `<div id="datosUsuario">
-                                <label class="etiquetaDeInput" for="nombre"><b>Nombre</b></label>
-                                <input id="inputNombre" type="text" placeholder="Nombre" name="nombre" required>
-                                ${plantillaModoOscuro}
-                            </div>`
-
-let objectoLocalStorage = JSON.parse(localStorage.getItem("usuario")) //busco en localStorage el objeto y hago un parse para que JS me devuelva un objeto
-
-console.log("objectoLocalStorage ===>")
-console.log(objectoLocalStorage)
-
-if (objectoLocalStorage) { //Si Nombre tiene contenido, entonces lo muestro
-    let usuario = new Usuario(objectoLocalStorage.nombre, objectoLocalStorage.modoOscuro)
-
-    console.log("usuario ===>")
-    console.log(usuario)
-
-    asignarValoresAlosInputs(usuario)
-    activarModoOscuro(objectoLocalStorage.modoOscuro)
-
-} else {
-    let usuario = new Usuario('', false)
-    asignarValoresAlosInputs(usuario)
-}
-
-document.getElementById("modoOscuro").addEventListener('change', activarModoOscuro) //Ecucho cuando hay cambios en el check de modo oscuro
-document.getElementById("formGrabarDatos").addEventListener("submit", grabarDatos);
-document.getElementById("recargar").addEventListener('click', ()=>{
-    location.reload(); //Con este metodo podemos recargar la pagina
-})
-function grabarDatos(e) {
-    //Cancelamos el comportamiento del evento
-    e.preventDefault();
-    let valorInputNombre = document.getElementById("inputNombre").value
-    let valorInputModoOscuro = document.getElementById("modoOscuro").checked
-    localStorage.setItem("usuario", JSON.stringify({
-        nombre: valorInputNombre,
-        modoOscuro: valorInputModoOscuro
-    }))
-}
-
-
-
-function activarModoOscuro() {
-    if (document.getElementById("modoOscuro").checked) {
-        document.body.className = "oscuro"
-    } else {
-        document.body.removeAttribute('class');
-    }
-}
-
-function asignarValoresAlosInputs(usuario) {
-    if (usuario.nombre != '') {
-        document.getElementById("bienvenida").innerHTML = `Hola de nuevo ${usuario.nombre}, aqui puedes modificar tus datos`
-        document.getElementById("inputNombre").value = usuario.nombre
-        document.getElementById("modoOscuro").checked = usuario.modoOscuro
-    } else {
-        document.getElementById("bienvenida").innerHTML = `Hola, por favor dinos tus datos y preferencias de experiencia`
-
-    }
-}
+// o almacenar array completo
+guardarLocal("listaProductos", JSON.stringify(productos));
