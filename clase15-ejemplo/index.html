@@ -9,6 +9,8 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/script.js" defer></script>
     <title>Clase 10</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 
 <body>
@@ -17,7 +19,7 @@
         <form action="grbarDatos" id="formGrabarDatos">
             <div id="datosUsuario">
                 <label class="etiquetaDeInput" for="nombre"><b>Nombre</b></label>
-                <input id="inputNombre" type="text" placeholder="Nombre" name="nombre" required>
+                <input class="inputUserId"id="inputNombre" type="text" placeholder="Nombre" name="nombre" required>
                 <div><label class="etiquetaDeInput"><b>Modo Oscuro</b></label>
                     <label class="switch">
                         <input type="checkbox" id="modoOscuro">
@@ -35,67 +37,22 @@
             <button id="deleteUsuario" class="boton fondo-violeta">Delete</button>
         </div>
         <h1 class="textCenter">ITEMS</h1>
-        <table id="items">
+        <table id="items" class="textCenter">
             <tr>
-                <th>itemId</th>
-                <th>nombre</th>
-                <th>precio</th>
+                <th>ItemId</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Acciones</th>
             </tr>
             <tr>
-                <td>Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Germany</td>
-            </tr>
-            <tr>
-                <td>Berglunds snabbköp</td>
-                <td>Christina Berglund</td>
-                <td>Sweden</td>
-            </tr>
-            <tr>
-                <td>Centro comercial Moctezuma</td>
-                <td>Francisco Chang</td>
-                <td>Mexico</td>
-            </tr>
-            <tr>
-                <td>Ernst Handel</td>
-                <td>Roland Mendel</td>
-                <td>Austria</td>
-            </tr>
-            <tr>
-                <td>Island Trading</td>
-                <td>Helen Bennett</td>
-                <td>UK</td>
-            </tr>
-            <tr>
-                <td>Königlich Essen</td>
-                <td>Philip Cramer</td>
-                <td>Germany</td>
-            </tr>
-            <tr>
-                <td>Laughing Bacchus Winecellars</td>
-                <td>Yoshi Tannamuri</td>
-                <td>Canada</td>
-            </tr>
-            <tr>
-                <td>Magazzini Alimentari Riuniti</td>
-                <td>Giovanni Rovelli</td>
-                <td>Italy</td>
-            </tr>
-            <tr>
-                <td>North/South</td>
-                <td>Simon Crowther</td>
-                <td>UK</td>
-            </tr>
-            <tr>
-                <td>Paris spécialités</td>
-                <td>Marie Bertrand</td>
-                <td>France</td>
+                <td><input id="nuevoItemId" class="inputItem" type="text" placeholder="itemId"></td>
+                <td><input id="nuevoItemNombre" class="inputItem" type="text" placeholder="nombre"></td>
+                <td><input id="nuevoItemPrecio" class="inputItem" type="number" placeholder="precio"></td>
+                <td><i id="agregarItem" class="large material-icons color-verde cursor-pointer">add_box
+                    </i></td>
             </tr>
         </table>
-
     </div>
-
-
     <div id="loader"></div>
 
 </body>

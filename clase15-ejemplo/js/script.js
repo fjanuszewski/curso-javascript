@@ -1,3 +1,4 @@
+const STUDENT = 'fabian'
 document.getElementById("loader").style.display = "none";
 
 class Usuario {
@@ -131,7 +132,7 @@ const grabarDatosServer = async (user) => {
     if (resp.ok) {
         mostrarMensaje({
             titulo: "¡Usuario grabado con exito!",
-            comentario: `¡El usuario ${user,userId} fue grabado con exito`,
+            comentario: `¡El usuario ${user.userId} fue grabado con exito`,
             icono: "success"
         })
     } else {
@@ -225,8 +226,105 @@ function mostrarMensaje(mensaje) {
     })
 }
 
-const traerTodosLosItems = async (student)=>{
+const traerTodosLosItems = async (student) => {
     const resp = await fetch(`https://api.fabianjanuszewski.com/34165/item?student=${student}`)
     const data = await resp.json()
+    let table = document.getElementById("items");
+
+    for (const item of data.items) {
+        let row = table.insertRow(1);
+        row.setAttribute("id", `fila-${item.itemId}`)
+        let itemId = row.insertCell(0);
+        let nombre = row.insertCell(1);
+        let precio = row.insertCell(2);
+        let acciones = row.insertCell(3);
+        itemId.innerHTML = item.itemId;
+        nombre.innerHTML = item.nombre;
+        precio.innerHTML = item.precio;
+        acciones.innerHTML = `<i id="delete-${item.itemId}" class="large material-icons delete-item">delete_forever</i>`
+    }
 }
-traerTodosLosItems('fabian') //INGRESA EL MISMO NOMBRE DE ALUMNO QUE USASTE CUANDO CREASTE LOS ITEMS
+traerTodosLosItems(STUDENT) //INGRESA EL MISMO NOMBRE DE ALUMNO QUE USASTE CUANDO CREASTE LOS ITEMS
+
+const agregarItem = async (item) => {
+    document.getElementById("loader").style.display = "";
+    document.getElementById("main").style.display = "none";
+    const resp = await fetch('https://api.fabianjanuszewski.com/34165/item/', {
+        method: 'POST',
+        body: JSON.stringify(item)
+    })
+    const data = await resp.json()
+    if (resp.ok) {
+        mostrarMensaje({
+            titulo: "Item grabado con exito!",
+            comentario: `¡El Item ${item.itemId} fue grabado con exito`,
+            icono: "success"
+        })
+    } else {
+        console.log(data)
+        mostrarMensaje({
+            titulo: "¡El Item no fue grabado!",
+            comentario: `respuesta del servidor: ${data.error.message}`,
+            icono: "error"
+        })
+    }
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("main").style.display = "";
+    return data
+}
+document.getElementById("agregarItem").addEventListener("click", () => {
+    let nuevoItem ={
+        itemId:  document.getElementById("nuevoItemId").value,
+        nombre:  document.getElementById("nuevoItemNombre").value,
+        precio:  document.getElementById("nuevoItemPrecio").value,
+        student:  STUDENT,
+    }
+    agregarItem(nuevoItem)
+
+    let table = document.getElementById("items");        
+    let row = table.insertRow(1);
+    let itemId = row.insertCell(0);
+    let nombre = row.insertCell(1);
+    let precio = row.insertCell(2);
+    let acciones = row.insertCell(3);
+    itemId.innerHTML = nuevoItem.itemId;
+    nombre.innerHTML = nuevoItem.nombre;
+    precio.innerHTML = nuevoItem.precio;        
+    acciones.innerHTML = `<i id="delete-${nuevoItem.itemId}" class="large material-icons delete-item">delete_forever</i>`
+});
+
+const deleteItem = async (itemId) => {
+    document.getElementById("loader").style.display = "";
+    document.getElementById("main").style.display = "none";
+    const resp = await fetch(`https://api.fabianjanuszewski.com/34165/item/${itemId}`, {
+        method: 'DELETE'
+    })
+    const data = await resp.json()
+    if (resp.ok) {
+        mostrarMensaje({
+            titulo: "Item eliminado con exito!",
+            comentario: `El Item ${itemId} fue eliminado con exito`,
+            icono: "success"
+        })
+    } else {
+        console.log(data)
+        mostrarMensaje({
+            titulo: "¡El Item no fue eliminado!",
+            comentario: `respuesta del servidor: ${data.error.message}`,
+            icono: "error"
+        })
+    }
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("main").style.display = "";
+    return resp.ok
+}
+document.addEventListener("click", function(e){
+    if(e.target.className.includes('delete-item')){
+        const itemId = e.target.id.replace('delete-', '')
+        const estado = deleteItem(itemId)
+        console.log(estado)
+        if(estado){
+            document.getElementById(`fila-${itemId}`).remove()
+        }
+    }
+});
