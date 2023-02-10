@@ -1,4 +1,4 @@
-const STUDENT = 'fabian'
+const STUDENT = ''
 document.getElementById("loader").style.display = "none";
 
 class Usuario {
