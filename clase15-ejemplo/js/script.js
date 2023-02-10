@@ -1,4 +1,7 @@
 const STUDENT = ''
+if(STUDENT =='')
+console.error("FALTA EL STUDENT!!!!!")
+
 document.getElementById("loader").style.display = "none";
 
 class Usuario {
