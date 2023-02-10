@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/script.js" defer></script>
     <title>Clase 10</title>
 </head>
@@ -17,11 +18,11 @@
             <div id="datosUsuario">
                 <label class="etiquetaDeInput" for="nombre"><b>Nombre</b></label>
                 <input id="inputNombre" type="text" placeholder="Nombre" name="nombre" required>
-                <label class="etiquetaDeInput"><b>Modo Oscuro</b></label>
-                <label class="switch">
-                    <input type="checkbox" id="modoOscuro">
-                    <span class="slider round"></span>
-                </label>
+                <div><label class="etiquetaDeInput"><b>Modo Oscuro</b></label>
+                    <label class="switch">
+                        <input type="checkbox" id="modoOscuro">
+                        <span class="slider round"></span>
+                    </label></div>
             </div>
             <div class="container gap20">
                 <button type="submit" class="boton w-50">Grabar</button>
@@ -29,11 +30,72 @@
             </div>
         </form>
         <div class="container gap20">
-            <button id="traerUsuario" class="boton fondo-azul w-50">Traer</button>
-            <button id="actualizarUsuario" class="boton fondo-naranja w-50">Actualizar</button>
-            <button id="deleteUsuario" class="boton fondo-violeta w-50">Delete</button>
+            <button id="traerUsuario" class="boton fondo-azul">Traer</button>
+            <button id="actualizarUsuario" class="boton fondo-naranja">Actualizar</button>
+            <button id="deleteUsuario" class="boton fondo-violeta">Delete</button>
         </div>
+        <h1 class="textCenter">ITEMS</h1>
+        <table id="items">
+            <tr>
+                <th>itemId</th>
+                <th>nombre</th>
+                <th>precio</th>
+            </tr>
+            <tr>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>Berglunds snabbköp</td>
+                <td>Christina Berglund</td>
+                <td>Sweden</td>
+            </tr>
+            <tr>
+                <td>Centro comercial Moctezuma</td>
+                <td>Francisco Chang</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>Ernst Handel</td>
+                <td>Roland Mendel</td>
+                <td>Austria</td>
+            </tr>
+            <tr>
+                <td>Island Trading</td>
+                <td>Helen Bennett</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>Königlich Essen</td>
+                <td>Philip Cramer</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>Laughing Bacchus Winecellars</td>
+                <td>Yoshi Tannamuri</td>
+                <td>Canada</td>
+            </tr>
+            <tr>
+                <td>Magazzini Alimentari Riuniti</td>
+                <td>Giovanni Rovelli</td>
+                <td>Italy</td>
+            </tr>
+            <tr>
+                <td>North/South</td>
+                <td>Simon Crowther</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>Paris spécialités</td>
+                <td>Marie Bertrand</td>
+                <td>France</td>
+            </tr>
+        </table>
+
     </div>
+
+
     <div id="loader"></div>
 
 </body>

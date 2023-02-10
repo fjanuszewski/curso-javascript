@@ -122,9 +122,11 @@ button {
 .fondo-rojo {
     background-color: rgba(255, 53, 53, 0.711);
 }
+
 .fondo-naranja {
     background-color: rgba(255, 178, 53, 0.973);
 }
+
 .fondo-azul {
     background-color: rgba(53, 157, 255, 0.711);
 }
@@ -132,6 +134,7 @@ button {
 .fondo-violeta {
     background-color: rgba(178, 53, 255, 0.711);
 }
+
 .w-50 {
     width: 50%;
 }
@@ -141,7 +144,7 @@ button {
 }
 
 .gap20 {
-    gap: 20px
+    gap: 1vw;
 }
 
 #loader {
@@ -157,34 +160,89 @@ button {
     border-top: 16px solid #3498db;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
-  }
-  
-  @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  /* Add animation to "page content" */
-  .animate-bottom {
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
     position: relative;
     -webkit-animation-name: animatebottom;
     -webkit-animation-duration: 1s;
     animation-name: animatebottom;
     animation-duration: 1s
-  }
-  
-  @-webkit-keyframes animatebottom {
-    from { bottom:-100px; opacity:0 } 
-    to { bottom:0px; opacity:1 }
-  }
-  
-  @keyframes animatebottom { 
-    from{ bottom:-100px; opacity:0 } 
-    to{ bottom:0; opacity:1 }
-  }
-  
+}
+
+@-webkit-keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0px;
+        opacity: 1
+    }
+}
+
+@keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+#items {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#items td,
+#items th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+
+
+#items tr:hover {
+    background-color: black;
+    color:white;
+}
+
+.oscuro>div>#items tr:hover {
+    background-color: white;
+    color:black;
+}
+
+#items th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}

@@ -97,6 +97,17 @@ const buscarUsuario = async (userId) => {
     document.getElementById("main").style.display = "none";
     const resp = await fetch(`https://api.fabianjanuszewski.com/34165/user/${userId}`)
     const data = await resp.json()
+    if (!resp.ok) {
+        mostrarMensaje({
+            titulo: "¡El usuario no existe!",
+            comentario: `respuesta del servidor: ${data.error.message}`,
+            icono: "warning"
+        })
+
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("main").style.display = "";
+        return
+    }
     console.log(data)
     let usuario = new Usuario(data.userId, data.modoOscuro)
     asignarValoresAlosInputs(usuario)
@@ -117,6 +128,20 @@ const grabarDatosServer = async (user) => {
         })
     })
     const data = await resp.json()
+    if (resp.ok) {
+        mostrarMensaje({
+            titulo: "¡Usuario grabado con exito!",
+            comentario: `¡El usuario ${user,userId} fue grabado con exito`,
+            icono: "success"
+        })
+    } else {
+        console.log(data)
+        mostrarMensaje({
+            titulo: "¡El usuario no fue grabado!",
+            comentario: `respuesta del servidor: ${data.error.message}`,
+            icono: "error"
+        })
+    }
     document.getElementById("loader").style.display = "none";
     document.getElementById("main").style.display = "";
     return data
@@ -136,6 +161,20 @@ const actualizarUsuario = async (user) => {
         })
     })
     const data = await resp.json()
+    if (resp.ok) {
+        mostrarMensaje({
+            titulo: "¡Usuario actualizado con exito!",
+            comentario: `El usuario ${user.userId} fue actualizado con exito`,
+            icono: "success"
+        })
+    } else {
+        console.log(data)
+        mostrarMensaje({
+            titulo: "¡El usuario no fue actualizado!",
+            comentario: `respuesta del servidor: ${data.error.message}`,
+            icono: "error"
+        })
+    }
     document.getElementById("loader").style.display = "none";
     document.getElementById("main").style.display = "";
     return data
@@ -154,6 +193,20 @@ const deleteUsuario = async (user) => {
         method: 'DELETE'
     })
     const data = await resp.json()
+    if (resp.ok) {
+        mostrarMensaje({
+            titulo: "¡Usuario eliminado con exito!",
+            comentario: `El usuario ${user} fue eliminado con exito`,
+            icono: "success"
+        })
+    } else {
+        console.log(data)
+        mostrarMensaje({
+            titulo: "¡El usuario no fue eliminado!",
+            comentario: `respuesta del servidor: ${data.error.message}`,
+            icono: "error"
+        })
+    }
     document.getElementById("loader").style.display = "none";
     document.getElementById("main").style.display = "";
     return data
@@ -162,3 +215,18 @@ document.getElementById("deleteUsuario").addEventListener("click", () => {
     deleteUsuario(document.getElementById("inputNombre").value)
 });
 
+function mostrarMensaje(mensaje) {
+    Swal.fire({
+        title: mensaje.titulo,
+        text: mensaje.comentario,
+        icon: mensaje.icono,
+        showCancelButton: false,
+        showConfirmButton: true
+    })
+}
+
+const traerTodosLosItems = async (student)=>{
+    const resp = await fetch(`https://api.fabianjanuszewski.com/34165/item?student=${student}`)
+    const data = await resp.json()
+}
+traerTodosLosItems('fabian') //INGRESA EL MISMO NOMBRE DE ALUMNO QUE USASTE CUANDO CREASTE LOS ITEMS
