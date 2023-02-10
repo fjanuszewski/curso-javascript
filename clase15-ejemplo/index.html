@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+    <title>Clase 10</title>
+</head>
+
+<body>
+    <div class="center" id="main">
+        <h1 class="textCenter" id="bienvenida"></h1>
+        <form action="grbarDatos" id="formGrabarDatos">
+            <div id="datosUsuario">
+                <label class="etiquetaDeInput" for="nombre"><b>Nombre</b></label>
+                <input id="inputNombre" type="text" placeholder="Nombre" name="nombre" required>
+                <label class="etiquetaDeInput"><b>Modo Oscuro</b></label>
+                <label class="switch">
+                    <input type="checkbox" id="modoOscuro">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="container gap20">
+                <button type="submit" class="boton w-50">Grabar</button>
+                <button id="recargar" type="submit" class="boton fondo-rojo w-50">Recargar Pagina</button>
+            </div>
+        </form>
+        <div class="container gap20">
+            <button id="traerUsuario" class="boton fondo-azul w-50">Traer</button>
+            <button id="actualizarUsuario" class="boton fondo-naranja w-50">Actualizar</button>
+            <button id="deleteUsuario" class="boton fondo-violeta w-50">Delete</button>
+        </div>
+    </div>
+    <div id="loader"></div>
+
+</body>
+
+</html>
