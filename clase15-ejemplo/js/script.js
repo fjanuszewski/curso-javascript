@@ -1,4 +1,4 @@
-const STUDENT = ''
+const STUDENT = 'fabian'
 if(STUDENT =='')
 console.error("FALTA EL STUDENT!!!!!")
 

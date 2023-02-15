@@ -9,45 +9,37 @@
 //     })
 //     .then((response) => response.json())
 //     .then((data) => console.log(data))
+const getDatos = async () => {
 
+   const resp = await fetch('/clase15/data.json')
+        .then((res) => res.json())
+        .then((data) => {
+            return data
+        })
+        return resp
+}
+const aroAisOffices = getDatos()
+console.log(aroAisOffices)
 
-// fetch('/clase15/data.json')
-//     .then( (res) => res.json())
-//     .then( (data) => {
+// fetch('https://api.fabianjanuszewski.com/34165/item/105')
+//     .then((response) => {
 
-//         data.forEach((producto) => {
-//             const li = document.createElement('li')
-//             li.innerHTML = `
-//                 <h4>${producto.nombre}</h4>
-//                 <p>${producto.precio}</p>
-//                 <p>Código: ${producto.id}</p>
-//                 <hr/>
-//             `
+//             console.log("ESTO DENTRO DE PEDIR BUSCAR ITEM")
+//             return response.json()
+//         }
 
-//             lista.append(li)
-//         })
-//     })
+//     )
+//     .then((data) => console.log(data))
 
-fetch('https://api.fabianjanuszewski.com/34165/item/105')
-    .then((response) => {
-
-            console.log("ESTO DENTRO DE PEDIR BUSCAR ITEM")
-            return response.json()
-        }
-
-    )
-    .then((data) => console.log(data))
-
-const lista = document.querySelector('#listado')
+// const lista = document.querySelector('#listado')
 
 const pedirPosts = async () => {
     const resp = await fetch('https://api.fabianjanuszewski.com/34165/item/105')
-                            .then((response) => {
-                                    console.log("ESTO DENTRO DE PEDIR BUSCAR ITEM CON AWAIT")
-                                    return response.json()
-                                }
-                            ).then((data) => console.log(data))
-    
+        .then((response) => {
+            console.log("ESTO DENTRO DE PEDIR BUSCAR ITEM CON AWAIT")
+            return response.json()
+        }).then((data) => console.log(data))
+
     console.log("ESTO DENTRO PEDIRS POSTS")
     data.forEach((post) => {
         const li = document.createElement('li')
